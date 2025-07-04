@@ -34,6 +34,66 @@ This is a simple production-style example that demonstrates how to run a **FastA
 
 ---
 
+**🛠️ Minikube Installation Guide (Linux/macOS/Windows)**
+
+---
+
+### **🔗 Official Site**
+
+[https://minikube.sigs.k8s.io/docs/start/](https://minikube.sigs.k8s.io/docs/start/)
+
+---
+
+### **🐧 For Linux**
+
+```bash
+# Download the latest Minikube binary
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+# Install it to your system path
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+# Verify
+minikube version
+```
+
+---
+
+### **🍎 For macOS (with Homebrew)**
+
+```bash
+brew install minikube
+minikube version
+```
+
+---
+
+### **🪟 For Windows (with Chocolatey)**
+
+```powershell
+choco install minikube
+minikube version
+```
+
+Or download the `.exe`:
+[https://github.com/kubernetes/minikube/releases/latest](https://github.com/kubernetes/minikube/releases/latest)
+
+---
+
+### **✅ Start Minikube**
+
+```bash
+minikube start --driver=docker
+```
+
+> Optional: `--addons=ingress` to enable Ingress.
+
+---
+
+Let me know if you want GPU/VM setup, WSL2 config, or ingress-nginx installed automatically.
+
+---
+
 ## 🚦 Setup Instructions
 
 1. **Start Minikube with Ingress:**
