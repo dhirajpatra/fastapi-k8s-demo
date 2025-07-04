@@ -15,7 +15,7 @@ metadata:
   name: postgres
 spec:
   replicas: 1
-  selector:                     # ✅ singular, not selectors
+  selector:
     matchLabels:
       app: postgres
   template:
@@ -23,6 +23,17 @@ spec:
       labels:
         app: postgres
     spec:
+      initContainers:
+        - name: init-db
+          image: postgres:13
+          envFrom:
+            - secretRef:
+                name: pg-secret
+            - configMapRef:
+                name: pg-config
+          volumeMounts:
+            - name: init-db-volume
+              mountPath: /docker-entrypoint-initdb.d
       containers:
         - name: postgres
           image: postgres:13
@@ -53,3 +64,6 @@ spec:
         - name: pgdata
           persistentVolumeClaim:
             claimName: postgres-pvc
+        - name: init-db-volume
+          configMap:
+            name: init-db-script

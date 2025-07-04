@@ -154,6 +154,39 @@ You can extend this project to include:
 * ✅ Helm chart packaging
 * ✅ CI/CD pipeline integration (GitHub Actions, etc.)
 
+* ✅ Helm Chart (simplified structure)
+
+helm/
+├── Chart.yaml
+├── values.yaml
+└── templates/
+    ├── deployment.yaml
+    ├── service.yaml
+    ├── ingress.yaml
+    ├── configmap.yaml
+    └── secret.yaml
+
+Values are passed into template
+
+# deployment.yaml template
+
+image:
+  repository: fastapi-demo
+  tag: latest
+
+env:
+  DB_HOST: postgres-service
+
+* ✅ Production Cloud K8s (EKS/GKE/Azure)
+   Next steps for cloud deployment:
+* 🔐 Use external Secrets Manager (AWS/GCP)
+* 🔐 Use CloudSQL / RDS for PostgreSQL
+* ☁️ Use cert-manager + HTTPS
+* 🔁 Add HorizontalPodAutoscaler
+* 📈 Integrate Prometheus + Grafana
+* 🚪 Add OAuth/OIDC Ingress Auth
+* 📦 Deploy via Helm in CI/CD pipeline
+
 ---
 
 ## 📜 License
