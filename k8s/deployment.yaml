@@ -15,17 +15,26 @@ spec:
         app: fastapi
     spec:
       containers:
-      - name: fastapi
-        image: fastapi-demo:latest
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 8000
-    volumes:
-      - name: app-volume
-        persistentVolumeClaim:
-          claimName: fastapi-pvc
-        # env:
-        # - name: DATABASE_URL
-        #   value: "postgresql://user:password@postgres-service:5432/dbname"
-        # - name: REDIS_URL
-        #   value: "redis://redis-service:6379/0"
+        - name: fastapi
+          image: fastapi-demo:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:                               # ✅ Move env inside container
+            - name: DB_HOST
+              value: postgres-service
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: pg-config
+                  key: POSTGRES_DB
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: pg-secret
+                  key: POSTGRES_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-secret
+                  key: POSTGRES_PASSWORD
