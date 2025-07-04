@@ -20,6 +20,10 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
+    volumes:
+      - name: app-volume
+        persistentVolumeClaim:
+          claimName: fastapi-pvc
         # env:
         # - name: DATABASE_URL
         #   value: "postgresql://user:password@postgres-service:5432/dbname"

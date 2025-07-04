@@ -1,0 +1,15 @@
+appVersion: "1.0"
+kind: PersistentVolumeClaim
+metadata:
+  name: fastapi-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  # storageClassName: standard
+  # volumeMode: Filesystem
+  # selector:
+  #   matchLabels:
+  #     app: fastapi
